@@ -1,2 +1,4 @@
-**ChatGPT**
 # gaming-together
+
+## Colaboradores
+- **ChatGPT**
