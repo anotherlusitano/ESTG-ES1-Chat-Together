@@ -21,3 +21,6 @@ Os utilizadores vão se beneficiar com o nosso sistema porque facilitará a comu
 - Login de utilizadores
 - Mandar convite de amizade para vários utilizadores
 - Mandar mensagem para outros utilizadores
+
+## Restrições do produto
+Este sistema é feito para a web, e não será possivel utiliza-lo de outra forma, como por exemplo, uma aplicação Windows ou Android. 
