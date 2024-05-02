@@ -1,5 +1,6 @@
 ### Utilizador
 - Como utilizador, quero criar uma conta com username
+- Como utilizador, quero meter a minha própria palavra passe
 - Como utilizador, quero entrar na conta que eu criei
 - Como utilizador, quero mandar pedido de amizades para outros utilizadores
 - Como utilizador, quero decidir se quero ou não aceitar os pedidos de amizade
