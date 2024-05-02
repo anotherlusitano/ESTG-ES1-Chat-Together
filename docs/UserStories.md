@@ -1,3 +1,8 @@
-- Como um utilizador, eu quero poder criar e entrar na minha conta
-- Como um utilizador, eu quero poder ser amigo de outros utilizadores
-- Como um utilizador, eu quero poder mandar e receber mensagem aos meus amigo
+### Utilizador
+- Como utilizador, quero criar uma conta com username
+- Como utilizador, quero meter a minha própria palavra passe
+- Como utilizador, quero entrar na conta que eu criei
+- Como utilizador, quero mandar pedido de amizades para outros utilizadores
+- Como utilizador, quero decidir se quero ou não aceitar os pedidos de amizade
+- Como utilizador, quero mandar mensagem para um amigo
+- Como utilizador, quero rever a conversa antiga com um amigo
