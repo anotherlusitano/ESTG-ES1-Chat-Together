@@ -1,17 +1,17 @@
 import "package:flutter/material.dart";
 
 void main() {
-  runApp(Pagina_Home());
+  runApp(PaginaHome());
 }
 
-class Pagina_Home extends StatefulWidget {
-  const Pagina_Home({Key? key}) : super(key: key);
+class PaginaHome extends StatefulWidget {
+  const PaginaHome({Key? key}) : super(key: key);
 
   @override
-  Pagina_HomeEstado createState() => Pagina_HomeEstado();
+  PaginaHomeEstado createState() => PaginaHomeEstado();
 }
 
-class Pagina_HomeEstado extends State<Pagina_Home> {
+class PaginaHomeEstado extends State<PaginaHome> {
   int quantidade_pedidos = 12;
 
   @override
