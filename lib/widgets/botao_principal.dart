@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BotaoPrincipal extends StatelessWidget {    BotaoPrincipal
+class BotaoPrincipal extends StatelessWidget {
   final Function()? onTap;
   final String text;
 
