@@ -1,9 +1,5 @@
 import "package:flutter/material.dart";
 
-void main() {
-  runApp(PaginaHome());
-}
-
 class PaginaHome extends StatefulWidget {
   const PaginaHome({Key? key}) : super(key: key);
 
