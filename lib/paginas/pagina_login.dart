@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:ESTG-ES1-Chat-Together/lib/widgets/botao_principal.dart'
+import 'package:gaming_together/widgets/botao_principal.dart';
 
 class PaginaLogin extends StatefulWidget {
   @override
