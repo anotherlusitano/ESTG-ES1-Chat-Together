@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:gaming_together/widgets/Mensagens.dart";
+import "package:gaming_together/widgets/ItemAmigo.dart";
 
 class PaginaMensagens extends StatefulWidget {
   const PaginaMensagens({Key? key}) : super(key: key);
@@ -34,41 +35,7 @@ class PaginaMensagensEstado extends State<PaginaMensagens> {
                   ]))
                 else
                   Expanded(
-                      child: ListView.builder(
-                          itemCount: quantidade_amigos,
-                          itemBuilder: (context, i) {
-                            return Column(children: [
-                              GestureDetector(
-                                  child: Container(
-                                      color: amigo_selecionado == i + 1
-                                          ? Colors.blueGrey[200]
-                                          : Colors.grey[300],
-                                      child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          children: [
-                                            ListTile(title: Text("")),
-                                            Divider(
-                                                thickness: 1,
-                                                color: Colors.black)
-                                          ])),
-                                  onTap: () {
-                                    setState(() {
-                                      amigo_selecionado = i + 1;
-
-                                      WidgetsBinding.instance
-                                          .addPostFrameCallback((_) {
-                                        scroll_chat.animateTo(
-                                            scroll_chat
-                                                .position.maxScrollExtent,
-                                            duration:
-                                                Duration(milliseconds: 300),
-                                            curve: Curves.easeOut);
-                                      });
-                                    });
-                                  })
-                            ]);
-                          })),
+                      child: ItemAmigo(quantidade_amigos, amigo_selecionado, mensagens, scroll_chat)),
                 Divider(thickness: 1, color: Colors.black),
                 Padding(
                     padding:
