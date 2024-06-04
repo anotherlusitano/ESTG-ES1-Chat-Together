@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'paginas/pagina_home.dart';
-
-void main() {
-  runApp(const PaginaHome());
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
