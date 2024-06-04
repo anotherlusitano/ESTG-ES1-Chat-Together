@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:ESTG-ES1-Chat-Together/lib/widgets/botao_principal.dart'
 
-class LoginScreen extends StatefulWidget {
+class PaginaLogin extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _PaginaLoginState createState() => _PaginaLoginState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _PaginaLoginState extends State<PaginaLogin> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _showPassword = false;
