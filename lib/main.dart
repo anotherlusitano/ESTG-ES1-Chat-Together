@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gaming_together/lib/paginas/pagina_login.dart'
+import 'package:gaming_together/paginas/pagina_login.dart';
 
 void main() {
   runApp(const MyApp());
