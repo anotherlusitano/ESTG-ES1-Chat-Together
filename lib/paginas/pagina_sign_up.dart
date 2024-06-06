@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:gaming_together/widgets/botao_principal.dart';
 
-class Login_SingUp extends StatefulWidget {
+class PaginaSignUp extends StatefulWidget {
   @override
-  _Login_SingUpState createState() => _Login_SingUpState();
+  _PaginaSignUpState createState() => _PaginaSignUp();
 }
 
-class _Login_SingUpState extends State<Login_SingUp> {
+class _PaginaSignUpState extends State<PaginaSignUp> {
   
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
