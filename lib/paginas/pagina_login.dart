@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:gaming_together/widgets/botao_principal.dart';
-import 'pagina_sign_up.dart';
+import 'package:gaming_together/paginas/pagina_sign_up.dart';
 
 class PaginaLogin extends StatefulWidget {
   @override
@@ -37,7 +37,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
               ),
               SizedBox(height: 10),
               SizedBox(
-                width: 280, 
+                width: 280,
                 child: TextField(
                   controller: _usernameController,
                   decoration: InputDecoration(
@@ -56,7 +56,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
               ),
               SizedBox(height: 10),
               SizedBox(
-                width: 280, 
+                width: 280,
                 child: TextField(
                   controller: _passwordController,
                   decoration: InputDecoration(
@@ -65,7 +65,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                     suffixIcon: IconButton(
                       icon: Icon(
                         _showPassword ? Icons.visibility : Icons.visibility_off,
-                        color: Colors.grey[400], 
+                        color: Colors.grey[400],
                       ),
                       onPressed: () {
                         setState(() {
@@ -79,7 +79,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
               ),
               SizedBox(height: 20),
               SizedBox(
-                width: 180, 
+                width: 180,
                 child: BotaoPrincipal(
                   onTap: () {
                     Navigator.push(
@@ -90,7 +90,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                   text: 'Entrar',
                 ),
               ),
-              SizedBox(height: 40), 
+              SizedBox(height: 40),
               RichText(
                 text: TextSpan(
                   style: TextStyle(fontSize: 16),
@@ -109,7 +109,6 @@ class _PaginaLoginState extends State<PaginaLogin> {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => PaginaSignUp()),
