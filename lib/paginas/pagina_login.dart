@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:gaming_together/widgets/botao_principal.dart';
+import 'pagina_sign_up.dart';
 
 class PaginaLogin extends StatefulWidget {
   @override
@@ -36,7 +37,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
               ),
               SizedBox(height: 10),
               SizedBox(
-                width: 280, // Ajustando a largura para médio
+                width: 280, 
                 child: TextField(
                   controller: _usernameController,
                   decoration: InputDecoration(
@@ -55,7 +56,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
               ),
               SizedBox(height: 10),
               SizedBox(
-                width: 280, // Ajustando a largura para médio
+                width: 280, 
                 child: TextField(
                   controller: _passwordController,
                   decoration: InputDecoration(
@@ -64,7 +65,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                     suffixIcon: IconButton(
                       icon: Icon(
                         _showPassword ? Icons.visibility : Icons.visibility_off,
-                        color: Colors.grey[400], // Definindo a cor do ícone
+                        color: Colors.grey[400], 
                       ),
                       onPressed: () {
                         setState(() {
@@ -78,17 +79,18 @@ class _PaginaLoginState extends State<PaginaLogin> {
               ),
               SizedBox(height: 20),
               SizedBox(
-                width: 180, // Ajustando a largura para médio
+                width: 180, 
                 child: BotaoPrincipal(
                   onTap: () {
-                    String username = _usernameController.text;
-                    String password = _passwordController.text;
-                    print('Username: $username, Password: $password');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PaginaSignUp()),
+                    );
                   },
                   text: 'Entrar',
                 ),
               ),
-              SizedBox(height: 40), // Aumentando o espaçamento para o link
+              SizedBox(height: 40), 
               RichText(
                 text: TextSpan(
                   style: TextStyle(fontSize: 16),
@@ -107,7 +109,11 @@ class _PaginaLoginState extends State<PaginaLogin> {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          print('Navegar para criar conta');
+                          
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => PaginaSignUp()),
+                          );
                         },
                     ),
                   ],
