@@ -1,28 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'package:gaming_together/widgets/botao_principal.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class Login_SingUp extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Chat Sign in',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginScreen(),
-    );
-  }
+  _Login_SingUpState createState() => _Login_SingUpState();
 }
 
-class LoginScreen extends StatefulWidget {
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
+class _Login_SingUpState extends State<Login_SingUp> {
+  
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -43,9 +29,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    BotaoVoltar(onTap: () {
-                      Navigator.pop(context);
-                    }),
+                GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(right: 16.0),
+        child: Icon(
+          Icons.arrow_back,
+          color: Colors.black,
+          size: 30,
+        ),
+      ),
+    )
                   ],
                 ),
                 SizedBox(height: 10),
@@ -134,64 +129,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class BotaoPrincipal extends StatelessWidget {
-  final Function()? onTap;
-  final String text;
-
-  const BotaoPrincipal({ 
-    required this.onTap,
-    required this.text,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Center(
-          child: Text(
-            text,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class BotaoVoltar extends StatelessWidget {
-  final Function()? onTap;
-
-  const BotaoVoltar({
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        margin: const EdgeInsets.only(right: 16.0),
-        child: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-          size: 30,
         ),
       ),
     );
