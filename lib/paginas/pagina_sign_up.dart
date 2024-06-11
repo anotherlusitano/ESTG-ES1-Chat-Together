@@ -4,7 +4,7 @@ import 'package:gaming_together/widgets/botao_principal.dart';
 
 class PaginaSignUp extends StatefulWidget {
   @override
-  _PaginaSignUpState createState() => _PaginaSignUp();
+  _PaginaSignUpState createState() => _PaginaSignUpState();
 }
 
 class _PaginaSignUpState extends State<PaginaSignUp> {
@@ -30,7 +30,7 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                 GestureDetector(
-      onTap: onTap,
+      onTap: null,
       child: Container(
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.only(right: 16.0),
