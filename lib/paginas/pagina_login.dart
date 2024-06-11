@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gaming_together/widgets/botao_principal.dart';
 import 'package:gaming_together/paginas/pagina_sign_up.dart';
 
@@ -12,6 +13,48 @@ class _PaginaLoginState extends State<PaginaLogin> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _showPassword = false;
+
+  // vai verificar se existe conta
+  // se não houver vai mandar erro
+  // se algo estiver mal, vai dar erro
+  // enquanto isso vai mostrar um círculo de loading
+  void entrar_na_conta() async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _usernameController.text,
+        password: _passwordController.text,
+      );
+
+      //pop loading circule
+      if (context.mounted) Navigator.pop(context);
+
+      // TODO: por aqui a navegação para a página Home
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => Home()),
+      // );
+    } on FirebaseAuthException catch (erro) {
+      // sair do circulo de loading
+      Navigator.pop(context);
+
+      mostrar_mensagem_erro(erro.message!);
+    }
+  }
+
+  void mostrar_mensagem_erro(String mensagem) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(mensagem),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +124,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
               SizedBox(
                 width: 180,
                 child: BotaoPrincipal(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => PaginaSignUp()),
-                    );
-                  },
+                  onTap: entrar_na_conta,
                   text: 'Entrar',
                 ),
               ),
