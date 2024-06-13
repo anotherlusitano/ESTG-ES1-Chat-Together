@@ -192,8 +192,7 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
                 SizedBox(
                   width: 150,
                   child: BotaoPrincipal(
-                    onTap: () {
-                    },
+                    onTap: signUp,
                     text: 'Criar',
                   ),
                 ),
