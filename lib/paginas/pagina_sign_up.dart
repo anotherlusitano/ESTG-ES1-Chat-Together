@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gaming_together/paginas/pagina_home.dart';
 import 'package:gaming_together/widgets/botao_principal.dart';
 
 class PaginaSignUp extends StatefulWidget {
@@ -8,12 +10,81 @@ class PaginaSignUp extends StatefulWidget {
 }
 
 class _PaginaSignUpState extends State<PaginaSignUp> {
-  
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _showPassword = false;
 
+  Future<bool> usernameExist() async {
+    final db = FirebaseFirestore.instance.collection('Utilizadores');
+
+    QuerySnapshot snapshot = await db.where('username', isEqualTo: _usernameController.text).get();
+
+    return snapshot.size > 0 ? true : false;
+  }
+    void signUp() async {
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+
+    if (_usernameController.text.isEmpty) {
+      Navigator.pop(context);
+
+      displayErrorMessage('Insira um Username!');
+      return;
+    }
+
+    if (_passwordController.text.isEmpty) {
+      Navigator.pop(context);
+
+      displayErrorMessage('Insira uma Password!');
+      return;
+    }
+
+    if (await usernameExist()) {
+      Navigator.pop(context);
+
+      displayErrorMessage('Esse Username já existe, tente um diferente!');
+      return;
+    }
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      FirebaseFirestore.instance.collection('Users').doc(userCredential.user!.uid).set({
+        'username': _usernameController.text,
+        'amigos': [],
+        'convites': [],
+      });
+
+      if (context.mounted) Navigator.pop(context);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => PaginaHome()),
+      );
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+
+      displayErrorMessage(e.code);
+    }
+  }
+
+  void displayErrorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(message),
+      ),
+    );
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
