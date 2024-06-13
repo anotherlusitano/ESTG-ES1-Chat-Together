@@ -173,6 +173,7 @@ class PaginaMensagensEstado extends State<PaginaMensagens> {
                         icon: Icon(Icons.logout),
                         onPressed: () {
                           FirebaseAuth.instance.signOut();
+                          Navigator.pop(context);
                         },
                       )
                   ])
