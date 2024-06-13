@@ -101,7 +101,7 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                 GestureDetector(
-      onTap: null,
+      onTap: () => Navigator.pop(context),
       child: Container(
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.only(right: 16.0),
@@ -116,7 +116,7 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
                 ),
                 SizedBox(height: 10),
                 Image.asset(
-                  'assets/avatar.png',
+                  'assets/chat-together-icon.png',
                   height: 150,
                 ),
                 SizedBox(height: 10),
