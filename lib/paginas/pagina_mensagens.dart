@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:firebase_auth/firebase_auth.dart";
 import "package:gaming_together/widgets/Mensagens.dart";
 import "package:gaming_together/widgets/ItemAmigo.dart";
 
@@ -167,10 +168,13 @@ class PaginaMensagensEstado extends State<PaginaMensagens> {
                           ])),
                 if (amigo_selecionado == 0)
                   Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                    IconButton(
+                      IconButton(
                         iconSize: 40,
                         icon: Icon(Icons.logout),
-                        onPressed: () {})
+                        onPressed: () {
+                          FirebaseAuth.instance.signOut();
+                        },
+                      )
                   ])
               ]))
         ])));
