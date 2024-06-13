@@ -47,13 +47,15 @@ class PaginaHomeEstado extends State<PaginaHome> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       IconButton(
-                                          icon: Icon(Icons.check,
-                                              color: Colors.green),
-                                          onPressed: () {}),
+                                        icon: Icon(Icons.check,
+                                            color: Colors.green),
+                                        onPressed: () {},
+                                      ),
                                       IconButton(
-                                          icon: Icon(Icons.close,
-                                              color: Colors.red),
-                                          onPressed: () {})
+                                        icon: Icon(Icons.close,
+                                            color: Colors.red),
+                                        onPressed: () {},
+                                      )
                                     ],
                                   ),
                                 ),
@@ -71,15 +73,19 @@ class PaginaHomeEstado extends State<PaginaHome> {
                     child: Row(
                       children: [
                         Expanded(
-                            child: IconButton(
-                                iconSize: 50,
-                                icon: Icon(Icons.message, color: Colors.black),
-                                onPressed: () {})),
+                          child: IconButton(
+                            iconSize: 50,
+                            icon: Icon(Icons.message, color: Colors.black),
+                            onPressed: () {},
+                          ),
+                        ),
                         Expanded(
-                            child: IconButton(
-                                iconSize: 50,
-                                icon: Icon(Icons.email, color: Colors.blue),
-                                onPressed: () {}))
+                          child: IconButton(
+                            iconSize: 50,
+                            icon: Icon(Icons.email, color: Colors.blue),
+                            onPressed: () {},
+                          ),
+                        ),
                       ],
                     ),
                   )
@@ -114,12 +120,13 @@ class PaginaHomeEstado extends State<PaginaHome> {
                             child: TextField(
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black)),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
                                 hintText: "Adicionar o teu amigo aqui",
                                 suffixIcon: IconButton(
-                                    icon: Icon(Icons.add_circle),
-                                    onPressed: () {}),
+                                  icon: Icon(Icons.add_circle),
+                                  onPressed: () {},
+                                ),
                               ),
                             ),
                           ),
