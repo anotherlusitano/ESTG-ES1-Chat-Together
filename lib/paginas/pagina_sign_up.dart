@@ -18,11 +18,13 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
   Future<bool> usernameExist() async {
     final db = FirebaseFirestore.instance.collection('Utilizadores');
 
-    QuerySnapshot snapshot = await db.where('username', isEqualTo: _usernameController.text).get();
+    QuerySnapshot snapshot =
+        await db.where('username', isEqualTo: _usernameController.text).get();
 
     return snapshot.size > 0 ? true : false;
   }
-    void signUp() async {
+
+  void signUp() async {
     showDialog(
       context: context,
       builder: (context) => const Center(
@@ -52,22 +54,30 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
     }
 
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
 
-      FirebaseFirestore.instance.collection('Users').doc(userCredential.user!.uid).set({
-        'username': _usernameController.text,
-        'amigos': [],
-        'convites': [],
-      });
+      FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userCredential.user!.uid)
+          .set(
+        {
+          'username': _usernameController.text,
+          'amigos': [],
+          'convites': [],
+        },
+      );
 
       if (context.mounted) Navigator.pop(context);
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => PaginaHome()),
+        MaterialPageRoute(
+          builder: (context) => PaginaHome(),
+        ),
       );
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
@@ -84,13 +94,15 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
       ),
     );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(
+          16.0,
+        ),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -100,18 +112,22 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                GestureDetector(
-      onTap: () => Navigator.pop(context),
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        margin: const EdgeInsets.only(right: 16.0),
-        child: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-          size: 30,
-        ),
-      ),
-    )
+                    GestureDetector(
+                      onTap: () => Navigator.pop(context),
+                      child: Container(
+                        padding: const EdgeInsets.all(
+                          10,
+                        ),
+                        margin: const EdgeInsets.only(
+                          right: 16.0,
+                        ),
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: Colors.black,
+                          size: 30,
+                        ),
+                      ),
+                    )
                   ],
                 ),
                 SizedBox(height: 10),
@@ -175,13 +191,17 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
                       labelText: 'Insira a palavra-passe...',
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _showPassword ? Icons.visibility : Icons.visibility_off,
+                          _showPassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                           color: Colors.grey[400],
                         ),
                         onPressed: () {
-                          setState(() {
-                            _showPassword = !_showPassword;
-                          });
+                          setState(
+                            () {
+                              _showPassword = !_showPassword;
+                            },
+                          );
                         },
                       ),
                     ),
