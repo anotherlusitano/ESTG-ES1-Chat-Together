@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gaming_together/widgets/botao_principal.dart';
 import 'package:gaming_together/paginas/pagina_sign_up.dart';
+import 'package:gaming_together/paginas/pagina_home.dart';
 
 class PaginaLogin extends StatefulWidget {
   @override
@@ -36,7 +37,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Home()),
+        MaterialPageRoute(builder: (context) => PaginaHome()),
       );
     } on FirebaseAuthException catch (erro) {
       // sair do circulo de loading
