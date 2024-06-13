@@ -34,11 +34,10 @@ class _PaginaLoginState extends State<PaginaLogin> {
       //pop loading circule
       if (context.mounted) Navigator.pop(context);
 
-      // TODO: por aqui a navegação para a página Home
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => Home()),
-      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Home()),
+      );
     } on FirebaseAuthException catch (erro) {
       // sair do circulo de loading
       Navigator.pop(context);
