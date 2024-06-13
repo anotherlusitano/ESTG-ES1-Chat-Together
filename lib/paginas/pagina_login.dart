@@ -111,9 +111,11 @@ class _PaginaLoginState extends State<PaginaLogin> {
                         color: Colors.grey[400],
                       ),
                       onPressed: () {
-                        setState(() {
-                          _showPassword = !_showPassword;
-                        });
+                        setState(
+                          () {
+                            _showPassword = !_showPassword;
+                          },
+                        );
                       },
                     ),
                   ),
@@ -149,7 +151,9 @@ class _PaginaLoginState extends State<PaginaLogin> {
                         ..onTap = () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => PaginaSignUp()),
+                            MaterialPageRoute(
+                              builder: (context) => PaginaSignUp(),
+                            ),
                           );
                         },
                     ),
