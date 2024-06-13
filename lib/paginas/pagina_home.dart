@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:firebase_auth/firebase_auth.dart";
 
 class PaginaHome extends StatefulWidget {
   const PaginaHome({Key? key}) : super(key: key);
@@ -106,10 +107,13 @@ class PaginaHomeEstado extends State<PaginaHome> {
                                                   icon: Icon(Icons.add_circle),
                                                   onPressed: () {}))))),
                               SizedBox(width: 20),
-                              IconButton(
-                                  iconSize: 40,
-                                  icon: Icon(Icons.logout),
-                                  onPressed: () {})
+                      IconButton(
+                        iconSize: 40,
+                        icon: Icon(Icons.logout),
+                        onPressed: () {
+                          FirebaseAuth.instance.signOut();
+                        },
+                      )
                             ]))
                   ]))
         ])));
