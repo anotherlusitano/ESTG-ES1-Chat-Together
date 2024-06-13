@@ -112,6 +112,7 @@ class PaginaHomeEstado extends State<PaginaHome> {
                         icon: Icon(Icons.logout),
                         onPressed: () {
                           FirebaseAuth.instance.signOut();
+                          Navigator.pop(context);
                         },
                       )
                             ]))
