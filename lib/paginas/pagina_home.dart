@@ -39,13 +39,10 @@ class PaginaHomeEstado extends State<PaginaHome> {
         },
       ).catchError((error) {
         if (error.toString() == 'RangeError (index): Index out of range: no indices are valid: 0') {
-          return SnackMsg.showError(context, 'Utilizador não existe!');
         } else {
-          return SnackMsg.showError(context, 'Ocorreu um erro: $error');
         }
       });
     } else {
-      return SnackMsg.showError(context, 'O username não pode ser vazio!');
     }
 
     setState(() {
