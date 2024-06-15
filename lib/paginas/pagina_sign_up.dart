@@ -133,7 +133,7 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
                 SizedBox(height: 10),
                 Image.asset(
                   'assets/chat-together-icon.png',
-                  height: 150,
+                  height: 250,
                 ),
                 SizedBox(height: 10),
                 Text(
