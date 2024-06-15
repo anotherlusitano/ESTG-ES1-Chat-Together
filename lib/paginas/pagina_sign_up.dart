@@ -119,6 +119,7 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
                           10,
                         ),
                         margin: const EdgeInsets.only(
+                          top: 10,
                           right: 16.0,
                         ),
                         child: Icon(
@@ -133,7 +134,7 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
                 SizedBox(height: 10),
                 Image.asset(
                   'assets/chat-together-icon.png',
-                  height: 250,
+                  height: 150,
                 ),
                 SizedBox(height: 10),
                 Text(
