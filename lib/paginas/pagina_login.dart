@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gaming_together/widgets/botao_principal.dart';
-import 'package:gaming_together/paginas/pagina_sign_up.dart';
-import 'package:gaming_together/paginas/pagina_home.dart';
+import 'package:chat_together/widgets/botao_principal.dart';
+import 'package:chat_together/paginas/pagina_sign_up.dart';
+import 'package:chat_together/paginas/pagina_home.dart';
 
 class PaginaLogin extends StatefulWidget {
   @override

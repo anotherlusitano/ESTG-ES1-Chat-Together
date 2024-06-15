@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:gaming_together/firebase_options.dart';
-import 'package:gaming_together/paginas/pagina_login.dart';
+import 'package:chat_together/firebase_options.dart';
+import 'package:chat_together/paginas/pagina_login.dart';
 
 void main() async {
   // isto serve para garantir que o firebase é inicializado

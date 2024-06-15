@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
-import "package:gaming_together/widgets/Mensagens.dart";
-import "package:gaming_together/widgets/ItemAmigo.dart";
+import "package:chat_together/widgets/Mensagens.dart";
+import "package:chat_together/widgets/ItemAmigo.dart";
 
 class PaginaMensagens extends StatefulWidget {
   const PaginaMensagens({Key? key}) : super(key: key);

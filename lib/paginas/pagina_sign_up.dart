@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gaming_together/paginas/pagina_home.dart';
-import 'package:gaming_together/widgets/botao_principal.dart';
+import 'package:chat_together/paginas/pagina_home.dart';
+import 'package:chat_together/widgets/botao_principal.dart';
 
 class PaginaSignUp extends StatefulWidget {
   @override
