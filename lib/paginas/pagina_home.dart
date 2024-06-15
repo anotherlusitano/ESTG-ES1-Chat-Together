@@ -39,16 +39,13 @@ class PaginaHomeEstado extends State<PaginaHome> {
         },
       ).catchError((error) {
         if (error.toString() == 'RangeError (index): Index out of range: no indices are valid: 0') {
-          if (error.toString() == 'RangeError (index): Index out of range: no indices are valid: 0') {
-            SnackMsg.showError(context, 'Utilizador não existe!');
-          } else {
-            SnackMsg.showError(context, 'Ocorreu um erro: $error');
-          }
+          SnackMsg.showError(context, 'Utilizador não existe!');
         } else {
-          SnackMsg.showError(context, 'O username não pode ser vazio!');
+          SnackMsg.showError(context, 'Ocorreu um erro: $error');
         }
       });
     } else {
+      SnackMsg.showError(context, 'O username não pode ser vazio!');
     }
 
     setState(() {
