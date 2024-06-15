@@ -100,9 +100,7 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.all(
-          16.0,
-        ),
+        padding: const EdgeInsets.all(16.0),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -115,10 +113,9 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
                     GestureDetector(
                       onTap: () => Navigator.pop(context),
                       child: Container(
-                        padding: const EdgeInsets.all(
-                          10,
-                        ),
+                        padding: const EdgeInsets.all(10),
                         margin: const EdgeInsets.only(
+                          top: 10,  
                           right: 16.0,
                         ),
                         child: Icon(
