@@ -61,7 +61,7 @@ class _PaginaSignUpState extends State<PaginaSignUp> {
       );
 
       FirebaseFirestore.instance
-          .collection('Users')
+          .collection('Utilizadores')
           .doc(userCredential.user!.uid)
           .set(
         {
