@@ -114,7 +114,7 @@ class PaginaHomeEstado extends State<PaginaHome> {
                               itemBuilder: (context, i) {
                                 return FutureBuilder<DocumentSnapshot>(
                                   future:
-                                      FirebaseFirestore.instance.collection('Utilizadores').doc(listaConvites[i]).get(),
+                                      FirebaseFirestore.instance.collection('Utilizadores').doc(listaConvites[i].toString().trim()).get(),
                                   builder: (context, snapshot) {
                                     if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
                                       final username = snapshot.data!['username'];
