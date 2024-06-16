@@ -1,235 +1,215 @@
-import "package:flutter/material.dart";
+import "package:chat_together/widgets/item_amigo.dart";
+import "package:chat_together/widgets/mensagens.dart";
 import "package:firebase_auth/firebase_auth.dart";
-import "package:chat_together/widgets/Mensagens.dart";
-import "package:chat_together/widgets/ItemAmigo.dart";
+import "package:flutter/material.dart";
 
-class PaginaMensagens extends StatefulWidget {
-  const PaginaMensagens({Key? key}) : super(key: key);
+class Pagina extends StatefulWidget {
+  const Pagina({super.key});
 
   @override
-  PaginaMensagensEstado createState() => PaginaMensagensEstado();
+  PaginaEstado createState() => PaginaEstado();
 }
 
-class PaginaMensagensEstado extends State<PaginaMensagens> {
-  int quantidade_amigos = 13, amigo_selecionado = 0;
-  List<String> mensagens = [];
-
-  TextEditingController mensagem_enviada = TextEditingController();
-  ScrollController scroll_chat = ScrollController();
-  FocusNode selecionar_caixatexto = FocusNode();
+class PaginaEstado extends State<Pagina> {
+  TextEditingController mensagemEnviada = TextEditingController();
+  FocusNode selecionarCaixatexto = FocusNode();
+  final _amigoSelecionado = "quero um 20";
+  bool _selecionado = false;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Chat Together",
-      home: Scaffold(
-        body: Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Column(
-                children: [
-                  if (quantidade_amigos == 0)
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Spacer(),
-                          Text(
-                            "Sem amigos",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          Spacer()
-                        ],
-                      ),
-                    )
-                  else
-                    Expanded(
-                      child: ItemAmigo(quantidade_amigos, amigo_selecionado,
-                          mensagens, scroll_chat),
-                    ),
-                  Divider(thickness: 1, color: Colors.black),
-                  Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                    child: Row(
+    return Scaffold(
+      body: Row(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Column(
+              children: [
+                if (_amigoSelecionado.isEmpty)
+                  const Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Expanded(
-                          child: IconButton(
-                            iconSize: 50,
-                            icon: Icon(Icons.message, color: Colors.blue),
-                            onPressed: () {},
-                          ),
+                        Text(
+                          "Sem amigos",
+                          style: TextStyle(fontSize: 20),
                         ),
-                        Expanded(
-                          child: IconButton(
-                            iconSize: 50,
-                            icon: Icon(Icons.email, color: Colors.black),
-                            onPressed: () {},
-                          ),
-                        )
                       ],
                     ),
                   )
-                ],
-              ),
-            ),
-            VerticalDivider(width: 1, color: Colors.black),
-            Expanded(
-              flex: 3,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  if (amigo_selecionado != 0)
-                    if (mensagens[amigo_selecionado - 1].length == 0)
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Spacer(),
-                            Text(
-                              "Sem mensagens",
-                              style: TextStyle(fontSize: 20),
-                            )
-                          ],
-                        ),
-                      ),
-                  if (amigo_selecionado != 0)
-                    if (mensagens[amigo_selecionado - 1].length != 0)
-                      Expanded(
-                        flex: 20,
-                        child: ListView.builder(
-                          controller: scroll_chat,
-                          itemCount: mensagens[amigo_selecionado - 1].length,
-                          itemBuilder: (context, i) {
-                            return Mensagem(
-                                emissor: "", mensagem: "", data: "");
-                          },
-                        ),
-                      ),
-                  if (amigo_selecionado == 0)
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Spacer(),
-                          Image.asset("assets/chat-together-icon.png",
-                              width: 200, height: 200),
-                          SizedBox(height: 10),
-                          Text(
-                            "Bem-vindo!",
-                            style: TextStyle(fontSize: 24),
+                else
+                  Expanded(
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          child: ItemAmigo(
+                            username: _amigoSelecionado,
+                            utilizadorSelecionado: _amigoSelecionado,
+                            selecionado: _selecionado,
                           ),
-                          Text(
-                            "Vem chattar connosco!",
-                            style: TextStyle(fontSize: 24),
+                          onTap: () => setState(
+                            () {
+                              _selecionado = !_selecionado;
+                            },
                           ),
-                        ],
-                      ),
+                        ),
+                        GestureDetector(
+                          child: ItemAmigo(
+                            username: "loias",
+                            utilizadorSelecionado: _amigoSelecionado,
+                            selecionado: _selecionado,
+                          ),
+                          onTap: () => setState(
+                            () {
+                              _selecionado = !_selecionado;
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  Spacer(),
-                  if (amigo_selecionado != 0)
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              width: 400,
-                              child: TextField(
-                                focusNode: selecionar_caixatexto,
-                                controller: mensagem_enviada,
-                                onSubmitted: (value) {
-                                  setState(
-                                    () {
-                                      if (mensagem_enviada.text.isNotEmpty) {
-                                        mensagem_enviada.clear();
-
-                                        WidgetsBinding.instance
-                                            .addPostFrameCallback(
-                                          (_) {
-                                            scroll_chat.animateTo(
-                                                scroll_chat
-                                                    .position.maxScrollExtent,
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                                curve: Curves.easeOut);
-                                          },
-                                        );
-
-                                        FocusScope.of(context).requestFocus(
-                                            selecionar_caixatexto);
-                                      }
-                                    },
-                                  );
-                                },
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black),
-                                  ),
-                                  hintText: "Enviar mensagem",
-                                  suffixIcon: IconButton(
-                                    icon: Icon(Icons.send),
-                                    onPressed: () {
-                                      setState(
-                                        () {
-                                          if (mensagem_enviada
-                                              .text.isNotEmpty) {
-                                            mensagem_enviada.clear();
-
-                                            WidgetsBinding.instance
-                                                .addPostFrameCallback(
-                                              (_) {
-                                                scroll_chat.animateTo(
-                                                    scroll_chat.position
-                                                        .maxScrollExtent,
-                                                    duration: Duration(
-                                                      milliseconds: 300,
-                                                    ),
-                                                    curve: Curves.easeOut);
-                                              },
-                                            );
-
-                                            FocusScope.of(context).requestFocus(
-                                                selecionar_caixatexto);
-                                          }
-                                        },
-                                      );
-                                    },
+                  ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: IconButton(
+                          iconSize: 50,
+                          icon: const Icon(Icons.message, color: Colors.blue),
+                          onPressed: () {},
+                        ),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          iconSize: 50,
+                          icon: const Icon(Icons.email, color: Colors.black),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const VerticalDivider(width: 1, color: Colors.black),
+          Expanded(
+            flex: 3,
+            child: _amigoSelecionado.isNotEmpty
+                ? Column(
+                    children: [
+                      // const Expanded(
+                      //   child: Column(
+                      //     children: [
+                      //       Spacer(),
+                      //       Text(
+                      //         "Sem mensagens",
+                      //         style: TextStyle(fontSize: 20),
+                      //       )
+                      //     ],
+                      //   ),
+                      // ),
+                      Mensagem(
+                        emissor: _amigoSelecionado,
+                        utilizadorSelecionado: _amigoSelecionado,
+                        mensagem: "lol",
+                        data: "1999-12-13:21:21:21",
+                      ),
+                      Mensagem(
+                        emissor: "lol=",
+                        utilizadorSelecionado: _amigoSelecionado,
+                        mensagem: "lol",
+                        data: "1999-12-13:21:21:21",
+                      ),
+                      Mensagem(
+                        emissor: _amigoSelecionado,
+                        utilizadorSelecionado: _amigoSelecionado,
+                        mensagem:
+                            "Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.",
+                        data: "1999-12-13:21:21:21",
+                      ),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: SizedBox(
+                                width: 400,
+                                child: TextField(
+                                  focusNode: selecionarCaixatexto,
+                                  controller: mensagemEnviada,
+                                  onSubmitted: (value) {},
+                                  decoration: InputDecoration(
+                                    border: const OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.black),
+                                    ),
+                                    hintText: "Enviar mensagem",
+                                    suffixIcon: IconButton(
+                                      icon: const Icon(Icons.send),
+                                      onPressed: () {},
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
+                            const SizedBox(width: 20),
+                            IconButton(
+                              iconSize: 40,
+                              icon: const Icon(Icons.logout),
+                              onPressed: () {
+                                FirebaseAuth.instance.signOut();
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      Expanded(
+                        child: Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.asset(
+                                "assets/chat-together-icon.png",
+                                width: 200,
+                                height: 200,
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                "Bem-vindo!",
+                                style: TextStyle(fontSize: 24),
+                              ),
+                              const Text(
+                                "Vem chattar connosco!",
+                                style: TextStyle(fontSize: 24),
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 20),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
                           IconButton(
                             iconSize: 40,
-                            icon: Icon(Icons.logout),
-                            onPressed: () {},
-                          )
+                            icon: const Icon(Icons.logout),
+                            onPressed: () {
+                              FirebaseAuth.instance.signOut();
+                              Navigator.pop(context);
+                            },
+                          ),
                         ],
                       ),
-                    ),
-                  if (amigo_selecionado == 0)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(
-                          iconSize: 40,
-                          icon: Icon(Icons.logout),
-                          onPressed: () {
-                            FirebaseAuth.instance.signOut();
-                            Navigator.pop(context);
-                          },
-                        )
-                      ],
-                    )
-                ],
-              ),
-            )
-          ],
-        ),
+                    ],
+                  ),
+          ),
+        ],
       ),
     );
   }
