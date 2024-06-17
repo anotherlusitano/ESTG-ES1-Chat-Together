@@ -1,3 +1,4 @@
+import "package:chat_together/paginas/pagina_mensagens.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:flutter/material.dart";
 import "package:firebase_auth/firebase_auth.dart";
@@ -113,8 +114,10 @@ class PaginaHomeEstado extends State<PaginaHome> {
                               itemCount: listaConvites.length,
                               itemBuilder: (context, i) {
                                 return FutureBuilder<DocumentSnapshot>(
-                                  future:
-                                      FirebaseFirestore.instance.collection('Utilizadores').doc(listaConvites[i].toString().trim()).get(),
+                                  future: FirebaseFirestore.instance
+                                      .collection('Utilizadores')
+                                      .doc(listaConvites[i].toString().trim())
+                                      .get(),
                                   builder: (context, snapshot) {
                                     if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
                                       final username = snapshot.data!['username'];
@@ -178,7 +181,12 @@ class PaginaHomeEstado extends State<PaginaHome> {
                         child: IconButton(
                           iconSize: 50,
                           icon: const Icon(Icons.message, color: Colors.black),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const PaginaMensagens()),
+                            );
+                          },
                         ),
                       ),
                       Expanded(
