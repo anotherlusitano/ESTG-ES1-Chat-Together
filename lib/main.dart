@@ -1,14 +1,23 @@
+import 'package:chat_together/provedor.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:chat_together/firebase_options.dart';
 import 'package:chat_together/paginas/pagina_login.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
-  // isto serve para garantir que o firebase é inicializado
+  // isto serve para garantir que o firebase Ã© inicializado
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UsernamesProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
