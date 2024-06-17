@@ -173,6 +173,7 @@ class PaginaHomeEstado extends State<PaginaHome> {
                         ));
                       }
                     }),
+                const Divider(thickness: 1, color: Colors.black),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                   child: Row(
