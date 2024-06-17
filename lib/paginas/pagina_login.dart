@@ -11,7 +11,7 @@ class PaginaLogin extends StatefulWidget {
 }
 
 class _PaginaLoginState extends State<PaginaLogin> {
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _showPassword = false;
 
@@ -28,7 +28,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
     );
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _usernameController.text,
+        email: _emailController.text,
         password: _passwordController.text,
       );
 
@@ -72,7 +72,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
               ),
               SizedBox(height: 20),
               Text(
-                'Username',
+                'Email',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -82,10 +82,10 @@ class _PaginaLoginState extends State<PaginaLogin> {
               SizedBox(
                 width: 280,
                 child: TextField(
-                  controller: _usernameController,
+                  controller: _emailController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Insira o username...',
+                    labelText: 'Insira o email...',
                   ),
                 ),
               ),
