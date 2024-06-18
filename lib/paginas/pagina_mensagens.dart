@@ -1,4 +1,5 @@
 import "package:chat_together/paginas/pagina_home.dart";
+import "package:chat_together/paginas/pagina_login.dart";
 import "package:chat_together/provedor.dart";
 import "package:chat_together/widgets/item_amigo.dart";
 import "package:chat_together/widgets/mensagens.dart";
@@ -286,7 +287,10 @@ class PaginaEstado extends State<PaginaMensagens> {
                                     icon: const Icon(Icons.logout),
                                     onPressed: () {
                                       FirebaseAuth.instance.signOut();
-                                      Navigator.pop(context);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => PaginaLogin()),
+                                      );
                                     },
                                   ),
                                 ],

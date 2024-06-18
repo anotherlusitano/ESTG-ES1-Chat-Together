@@ -1,3 +1,4 @@
+import "package:chat_together/paginas/pagina_login.dart";
 import "package:chat_together/paginas/pagina_mensagens.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:flutter/material.dart";
@@ -248,7 +249,10 @@ class PaginaHomeEstado extends State<PaginaHome> {
                         icon: const Icon(Icons.logout),
                         onPressed: () {
                           FirebaseAuth.instance.signOut();
-                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => PaginaLogin()),
+                          );
                         },
                       )
                     ],
